@@ -1,5 +1,5 @@
 (function($){
-	
+
 	$(window).on('load', function(){
 		$('.fade-in').css({ position: 'relative', opacity: 0, top: -14 });
 		setTimeout(function(){
@@ -30,36 +30,6 @@
 		// Invoke the Placeholder plugin
 		$('input, textarea').placeholder();
 
-		// Validate newsletter form
-		$('<div class="loading"><span class="bounce1"></span><span class="bounce2"></span><span class="bounce3"></span></div>').hide().appendTo('.form-wrap');
-		$('<div class="success"></div>').hide().appendTo('.form-wrap');
-		$('#newsletter-form').validate({
-			rules: {
-				newsletter_email: { required: true, email: true }
-			},
-			messages: {
-				newsletter_email: {
-					required: 'E-mail é obrigatório',
-					email: 'E-mail inválido'
-				}
-			},
-			errorElement: 'span',
-			errorPlacement: function(error, element){
-				error.appendTo(element.parent());
-			},
-			submitHandler: function(form){
-				$(form).hide();
-				$('#newsletter .loading').css({ opacity: 0 }).show().animate({ opacity: 1 });
-				$.post($(form).attr('action'), $(form).serialize(), function(data){
-					$('#newsletter .loading').animate({opacity: 0}, function(){
-						$(this).hide();
-						$('#newsletter .success').show().html('<p>Obrigado por cadastrar!</p>').animate({opacity: 1});
-					});
-				});
-				return false;
-			}
-		});
-
 		// Open modal window on click
 		$('#modal-open').on('click', function(e) {
 			var mainInner = $('#main .inner'),
@@ -80,5 +50,5 @@
 		});
 
 	});
-	
+
 })(jQuery);
